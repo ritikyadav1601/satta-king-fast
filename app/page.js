@@ -9,6 +9,10 @@ import { monthName, slugify } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
+function resultClass(value) {
+  return String(value).toUpperCase() === "XX" ? " result-pending" : "";
+}
+
 export default async function HomePage() {
   const [ads, games, monthly] = await Promise.all([
     getAds(),
@@ -29,7 +33,7 @@ export default async function HomePage() {
           {topGames.map((item) => (
             <div className="live-result-item text-center" key={item._id}>
               <h2 className="live-result-game">{item.name}</h2>
-              <p className="live-result-value">{item.second}</p>
+              <p className={`live-result-value${resultClass(item.second)}`}>{item.second}</p>
             </div>
           ))}
         </div>

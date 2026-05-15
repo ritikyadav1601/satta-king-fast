@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { formatTime, slugify } from "@/lib/utils";
 
+function ResultText({ value }) {
+  const pending = String(value).toUpperCase() === "XX";
+  return <span className={pending ? "result-pending" : undefined}>{value}</span>;
+}
+
 function GameCard({ game, featured }) {
   const year = new Date().getFullYear();
   return (
@@ -9,9 +14,9 @@ function GameCard({ game, featured }) {
       <p className={featured ? "text-white" : "text-red-600 font-semibold"}>({formatTime(game.resultTime)})</p>
       <p className={`${featured ? "text-xl text-white" : "text-xl"} font-bold`}>
         {"{ "}
-        {game.first}
+        <ResultText value={game.first} />
         {" } "}
-        <span className="text-green-600">➡</span> [ {game.second} ]
+        <span className="text-green-600">➡</span> [ <ResultText value={game.second} /> ]
       </p>
       <div className="mt-3">
         <Link className={`${featured ? "bg-black text-yellow-200" : "bg-blue-600 text-white"} inline-block text-sm px-4 py-1 w-full transition`} href={`/year-chart/${slugify(game.name)}-result-chart-${year}`}>

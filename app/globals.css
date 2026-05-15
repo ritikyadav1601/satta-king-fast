@@ -78,6 +78,14 @@ select {
   padding: 20px;
 }
 
+.site-logo {
+  display: block;
+  height: 80px;
+  max-width: min(320px, 78vw);
+  object-fit: contain;
+  width: auto;
+}
+
 .home-blue-band {
   background: #1d4ed8;
   height: 20px;
@@ -148,6 +156,33 @@ select {
   font-weight: 700;
   line-height: 1.15;
   margin: 0;
+}
+
+.result-pending {
+  animation: pending-result-colors 1s infinite;
+  font-weight: 800;
+}
+
+@keyframes pending-result-colors {
+  0% {
+    color: #dc2626;
+  }
+
+  25% {
+    color: #2563eb;
+  }
+
+  50% {
+    color: #16a34a;
+  }
+
+  75% {
+    color: #d97706;
+  }
+
+  100% {
+    color: #dc2626;
+  }
 }
 
 @media (min-width: 768px) {

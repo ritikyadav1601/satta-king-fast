@@ -21,6 +21,12 @@ function displayGameName(game) {
   return shortNames[normalized] || name.toUpperCase();
 }
 
+function ResultText({ value }) {
+  const result = value || "-";
+  const pending = String(result).toUpperCase() === "XX";
+  return <span className={pending ? "result-pending" : undefined}>{result}</span>;
+}
+
 function ChartTables({ rows, chunks }) {
   return chunks.map((group, groupIndex) => (
     <table key={groupIndex} className="satta-results-table w-full border border-gray-400 mb-5">
@@ -40,7 +46,7 @@ function ChartTables({ rows, chunks }) {
             <td className="px-3 py-2 border border-gray-400 font-semibold text-sm md:text-base text-left">{row.Date}</td>
             {group.map((game) => (
               <td key={game} className="px-3 py-2 border border-gray-400 text-sm md:text-base">
-                {row[game] || "-"}
+                <ResultText value={row[game]} />
               </td>
             ))}
           </tr>

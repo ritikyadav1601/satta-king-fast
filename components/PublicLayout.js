@@ -11,7 +11,7 @@ export default async function PublicLayout({ children }) {
       <div className="text-center text-2xl text-white py-2">
         <div className="flex justify-center">
           <Link href="/">
-            <img className="w-auto h-20" alt="SattaKingFast" src="/img/logosm.jpg" />
+            <img className="site-logo" alt="SattaKingFast" src="/img/logosm.jpg" />
           </Link>
         </div>
       </div>

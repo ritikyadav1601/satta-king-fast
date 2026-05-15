@@ -3,6 +3,12 @@ import { getYearChartRows } from "@/lib/data";
 
 export const dynamic = "force-dynamic";
 
+function ResultText({ value }) {
+  const result = value || "-";
+  const pending = String(result).toUpperCase() === "XX";
+  return <span className={pending ? "result-pending" : undefined}>{result}</span>;
+}
+
 export default async function YearChartPage({ params }) {
   const resolvedParams = await params;
   const match = decodeURIComponent(resolvedParams.slugYear).match(/^(.+)-result-chart-(\d{4})$/);
@@ -39,7 +45,7 @@ export default async function YearChartPage({ params }) {
               {rows.map((row) => (
                 <tr className="bg-purple-50 text-center" key={row.Date}>
                   <td className="px-3 py-2 border border-gray-400 font-semibold text-sm md:text-base text-center">{row.Date}</td>
-                  {months.map((month) => <td className="px-3 py-2 border border-gray-400 text-sm md:text-base" key={month}>{row[month] || "-"}</td>)}
+                  {months.map((month) => <td className="px-3 py-2 border border-gray-400 text-sm md:text-base" key={month}><ResultText value={row[month]} /></td>)}
                 </tr>
               ))}
             </tbody>
