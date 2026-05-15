@@ -28,6 +28,7 @@ select {
 }
 
 .floating {
+  align-items: center;
   position: fixed;
   width: 60px;
   height: 60px;
@@ -36,6 +37,8 @@ select {
   background-color: #25d366;
   color: #fff;
   border-radius: 50px;
+  display: flex;
+  justify-content: center;
   text-align: center;
   font-size: 30px;
   box-shadow: 2px 2px 3px #999;
@@ -43,8 +46,9 @@ select {
 }
 
 .fab-icon {
-  margin-top: 16px;
-  display: inline-block;
+  display: block;
+  height: 34px;
+  width: 34px;
 }
 
 .admin-form input,
