@@ -1,7 +1,7 @@
 import PublicLayout from "@/components/PublicLayout";
 import { getYearChartRows } from "@/lib/data";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 function ResultText({ value }) {
   const result = value || "-";
@@ -19,7 +19,7 @@ export default async function YearChartPage({ params }) {
 
   return (
     <PublicLayout>
-      <div className="max-w-lg mx-auto py-5 text-center flex space-x-6 mt-5 -mb-5 lg:-mb-8">
+      <div className="max-w-lg mx-auto px-4 py-5 text-center flex flex-wrap justify-center gap-3 mt-5 -mb-5 lg:-mb-8">
         <h1 className="text-2xl md:text-1xl font-bold">Select Year</h1>
         <form action={`/year-chart/${slug}-result-chart-${year}`} className="flex gap-3" id="yearForm">
           <select name="year" className="border border-gray-400 px-4 py-2 rounded-md text-sm" defaultValue={year} onChange={null}>
@@ -29,7 +29,7 @@ export default async function YearChartPage({ params }) {
           </select>
         </form>
       </div>
-      <div className="px-5 my-8">
+      <div className="fluid-panel my-8">
         <h2 className="bg-yellow-400 text-black font-bold text-lg md:text-2xl text-center py-3 uppercase">
           {slug.toUpperCase()} YEARLY CHART {year}
         </h2>

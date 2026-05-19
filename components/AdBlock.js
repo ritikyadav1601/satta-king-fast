@@ -6,7 +6,7 @@ export default function AdBlock({ ad }) {
   return (
     <>
       <section className="p-1">
-        <div className="text-center font-bold border-2 border-blue-600 rounded-xl mt-1 py-2">
+        <div className="responsive-copy text-center font-bold border-2 border-blue-600 rounded-xl mt-1 py-2 px-2">
           <p>FARIDABAD | GAZIYABAD | GALI | DS</p>
           <p>🔥 DIRECT COMPANY SE LEAK JODI 🔥</p>
           <p>JO BHAI APNA LOSS COVER KARNA CHAHTE HO ,GAME SINGAL JODI MAI HE MILEGA ,GAME KISI KA BAAP NAHI KAAT SAKTA ,APNI BOOKING KARANE K LIYE ABHI WHATSAPP&nbsp;YA&nbsp;CALL&nbsp;KARE&nbsp;!</p>
@@ -16,7 +16,7 @@ export default function AdBlock({ ad }) {
         </div>
       </section>
       <section>
-        <div className="rounded-md mx-1 my-2 p-4 text-center text-white" style={{ background: "linear-gradient(rgb(0, 0, 0) 0%, rgb(10, 58, 63) 100%)" }}>
+        <div className="responsive-copy rounded-md mx-1 my-2 p-4 text-center text-white" style={{ background: "linear-gradient(rgb(0, 0, 0) 0%, rgb(10, 58, 63) 100%)" }}>
           <h1 className="yellow_heading text-lg md:text-2xl font-normal mb-1">🔥FEES GAME PASS KE BAD</h1>
           <p className="mb-1 text-white text-sm font-semibold">🎯FARIDABAD GAZIYABAD GALI DS🎯</p>
           <p className="mb-1 text-white text-sm font-semibold">💯LEAK SINGLE JODI GAME💯 <br />MUMBAI HEAD BRANCH</p>
@@ -24,7 +24,7 @@ export default function AdBlock({ ad }) {
           <button className="bg-red-600 text-white font-bold rounded-full px-8 py-2" type="button">SATTA KING</button>
         </div>
       </section>
-      <div className="bg_gradient text-white">
+      <div className="responsive-copy bg_gradient text-white">
         <div className="max-w-6xl mx-auto">
           <div className="md:flex justify-between md:space-x-6">
             <div className="py-4 text-center shadow-xl rounded-xl w-full">

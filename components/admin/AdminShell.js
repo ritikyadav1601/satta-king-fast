@@ -7,6 +7,7 @@ export default async function AdminShell({ children }) {
   return (
     <div>
       <link rel="stylesheet" href="/admin/bootstrap.min.css" />
+      <link rel="stylesheet" href="/admin/boxicons.min.css" />
       <link rel="stylesheet" href="/admin/style.css" />
       <div className="sidebar active">
         <div className="logo_content">

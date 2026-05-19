@@ -3,7 +3,7 @@ import PublicLayout from "@/components/PublicLayout";
 import { getMonthlyRows } from "@/lib/data";
 import { istDate, monthName } from "@/lib/utils";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 30;
 
 export default async function ChartsPage() {
   const monthly = await getMonthlyRows({ untilToday: true });

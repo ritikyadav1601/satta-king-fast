@@ -9,10 +9,10 @@ function ResultText({ value }) {
 function GameCard({ game }) {
   const year = new Date().getFullYear();
   return (
-    <div className="border border-gray-300 text-center shadow-sm rounded-md py-2">
-      <h2 className="text-lg text-blue-700 font-bold uppercase">{game.name}</h2>
+    <div className="responsive-copy border border-gray-300 text-center shadow-sm rounded-md py-2">
+      <h2 className="text-lg text-blue-700 font-bold uppercase leading-tight px-1">{game.name}</h2>
       <p className="text-red-600 font-semibold">({formatTime(game.resultTime)})</p>
-      <p className="text-xl font-bold">
+      <p className="text-lg md:text-xl font-bold">
         {"{ "}
         <ResultText value={game.first} />
         {" } "}

@@ -143,7 +143,7 @@ const yearlyChartContent = [
 
 export default function YearlyChartSeoContent() {
   return (
-    <section className="mx-5 mt-8 rounded-md border-2 border-blue-600 bg-white p-6 text-center">
+    <section className="fluid-panel mt-8 rounded-md border-2 border-blue-600 bg-white p-6 text-center">
       <div className="space-y-6">
         {yearlyChartContent.map((item) => (
           <article key={item.title}>

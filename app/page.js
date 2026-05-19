@@ -7,7 +7,7 @@ import PublicLayout from "@/components/PublicLayout";
 import { getAds, getGamesWithTodayResults, getMonthlyRows, getTopGames } from "@/lib/data";
 import { istDate, monthName, slugify } from "@/lib/utils";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 30;
 
 function resultClass(value) {
   return String(value).toUpperCase() === "XX" ? " result-pending" : "";
@@ -89,11 +89,11 @@ function yearlyChartOrder(name = "") {
 }
 
 export default async function HomePage() {
-  const [ads, games, monthly] = await Promise.all([
+  const [ads, games] = await Promise.all([
     getAds(),
-    getGamesWithTodayResults(),
-    getMonthlyRows({ untilToday: true })
+    getGamesWithTodayResults()
   ]);
+  const monthly = await getMonthlyRows({ untilToday: true, games });
   const gamesByName = games.reduce((map, game) => {
     const key = normalizeGameName(game.name);
     const existing = map.get(key) || [];
@@ -138,7 +138,7 @@ export default async function HomePage() {
       <hr style={{ height: 10, backgroundColor: "rgb(2 85 70)" }} />
       <MonthlyChartTable title={title} rows={monthly.rows} columns={monthly.gameColumns} dateKey={today} />
       <div className="mx-auto py-8">
-        <div className="px-5 grid grid-cols-1">
+        <div className="fluid-panel grid grid-cols-1">
           {yearlyGames.map((game) => (
             <Link className="hover:underline border-2 shadow-xl rounded-lg my-1" href={`/year-chart/${slugify(game.name)}-result-chart-${year}`} key={game._id}>
               <div className="overflow-hidden transition-all duration-300 transform cursor-pointer">

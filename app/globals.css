@@ -1,12 +1,64 @@
 html,
 body {
   min-height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
   background: #ffffff;
   color: #111827;
   margin: 0;
+}
+
+*,
+*::before,
+*::after {
+  min-width: 0;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+.site-shell {
+  max-width: 100%;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.public-nav {
+  align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.public-nav-home {
+  flex: 0 0 54px;
+}
+
+.public-nav-item {
+  flex: 1 1 64px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.responsive-copy,
+.responsive-copy * {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.fluid-panel {
+  margin-left: 8px;
+  margin-right: 8px;
+  max-width: calc(100% - 16px);
 }
 
 button,
@@ -32,8 +84,8 @@ select {
   position: fixed;
   width: 60px;
   height: 60px;
-  bottom: 40px;
-  right: 40px;
+  bottom: 18px;
+  right: 14px;
   background-color: #25d366;
   color: #fff;
   border-radius: 50px;
@@ -190,6 +242,11 @@ select {
 }
 
 @media (min-width: 768px) {
+  .floating {
+    bottom: 40px;
+    right: 40px;
+  }
+
   .home-blue-band {
     height: 32px;
   }
@@ -247,6 +304,17 @@ select {
   table-layout: fixed;
 }
 
+.satta-table-container,
+.table-wrapper {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .monthly-chart-mobile .satta-results-table th,
 .monthly-chart-mobile .satta-results-table td {
   padding: 6px 3px;
@@ -291,6 +359,26 @@ select {
   color: #ffffff;
 }
 
+@media (max-width: 380px) {
+  .public-nav-home {
+    flex-basis: 46px;
+  }
+
+  .public-nav-item {
+    flex-basis: 56px;
+    font-size: 12px;
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
+  .monthly-chart-mobile .satta-results-table th,
+  .monthly-chart-mobile .satta-results-table td {
+    font-size: 12px;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+}
+
 @media (min-width: 768px) {
   .monthly-chart-mobile {
     display: none;
@@ -313,5 +401,11 @@ select {
   .monthly-chart-nav-btn {
     font-size: 15px;
     padding: 12px 16px;
+  }
+
+  .fluid-panel {
+    margin-left: 20px;
+    margin-right: 20px;
+    max-width: calc(100% - 40px);
   }
 }

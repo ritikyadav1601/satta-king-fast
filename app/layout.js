@@ -10,7 +10,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <link rel="stylesheet" href="/asset/app.css" />
-        <link rel="shortcut icon" href="/img/logosm.jpg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
       </head>
       <body>{children}</body>
     </html>
