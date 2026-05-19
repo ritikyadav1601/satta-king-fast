@@ -5,7 +5,7 @@ export default async function AdminShell({ children }) {
   await requireAdmin();
 
   return (
-    <div>
+    <div className="admin-shell">
       <link rel="stylesheet" href="/admin/bootstrap.min.css" />
       <link rel="stylesheet" href="/admin/boxicons.min.css" />
       <link rel="stylesheet" href="/admin/style.css" />
@@ -26,7 +26,7 @@ export default async function AdminShell({ children }) {
         </ul>
       </div>
       <div className="home_content">{children}</div>
-      <script dangerouslySetInnerHTML={{ __html: `document.addEventListener('click',function(e){if(e.target && e.target.id==='btn'){document.querySelector('.sidebar')?.classList.toggle('active')}});if(window.innerWidth<=768){document.querySelector('.sidebar')?.classList.remove('active')}` }} />
+      <script dangerouslySetInnerHTML={{ __html: `document.addEventListener('click',function(e){const sidebar=document.querySelector('.sidebar');if(!sidebar)return;if(e.target&&e.target.id==='btn'){if(window.innerWidth<=768)sidebar.classList.toggle('mobile-open');else sidebar.classList.toggle('active')}else if(window.innerWidth<=768&&e.target.closest('.sidebar a')){sidebar.classList.remove('mobile-open')}});function syncAdminSidebar(){const sidebar=document.querySelector('.sidebar');if(!sidebar)return;if(window.innerWidth<=768){sidebar.classList.remove('active')}else{sidebar.classList.remove('mobile-open');sidebar.classList.add('active')}}syncAdminSidebar();window.addEventListener('resize',syncAdminSidebar);` }} />
     </div>
   );
 }

@@ -20,6 +20,11 @@ body {
   overflow-y: auto;
 }
 
+.admin-shell {
+  min-height: 100vh;
+  width: 100%;
+}
+
 .sidebar {
   position: fixed;
   top: 0;
@@ -29,6 +34,7 @@ body {
   background: #11101d;
   padding: 6px 14px;
   transition: all 0.5 ease;
+  z-index: 1000;
 }
 
 .sidebar.active {
@@ -263,7 +269,8 @@ body {
   min-height: 100vh;
   width: calc(100% - 78px);
   margin-left: 78px;
-  overflow: visible;
+  overflow: hidden;
+  padding: 16px;
   transition: all 0.5s ease;
 }
 
@@ -277,4 +284,162 @@ body {
 .sidebar.active ~ .home_content {
   width: calc(100% - 240px);
   margin-left: 240px;
+}
+
+.home_content > .container {
+  max-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.admin-card {
+  overflow: hidden;
+}
+
+.admin-form .row {
+  row-gap: 12px;
+}
+
+.admin-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.admin-form .d-flex {
+  flex-wrap: wrap;
+}
+
+.admin-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+}
+
+.admin-card .table {
+  min-width: 640px;
+}
+
+.admin-card td,
+.admin-card th {
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.admin-card td:first-child,
+.admin-card th:first-child {
+  white-space: normal;
+}
+
+@media (max-width: 768px) {
+  .admin-shell {
+    padding-top: 64px;
+  }
+
+  .sidebar,
+  .sidebar.active {
+    bottom: auto;
+    height: 64px;
+    left: 0;
+    overflow: hidden;
+    padding: 6px 12px;
+    right: 0;
+    top: 0;
+    transition: height 0.25s ease;
+    width: 100%;
+  }
+
+  .sidebar.mobile-open {
+    height: min(100vh, 360px);
+    overflow-y: auto;
+  }
+
+  .sidebar .logo_content {
+    align-items: center;
+    display: flex;
+    height: 52px;
+    justify-content: space-between;
+  }
+
+  .sidebar .logo_content .logo,
+  .sidebar.active .logo_content .logo {
+    opacity: 1;
+    pointer-events: auto;
+    width: auto;
+  }
+
+  .sidebar #btn,
+  .sidebar.active #btn {
+    cursor: pointer;
+    flex: 0 0 44px;
+    left: auto;
+    position: static;
+    top: auto;
+    transform: none;
+  }
+
+  .sidebar ul {
+    margin-top: 8px;
+  }
+
+  .sidebar ul li {
+    height: auto;
+    line-height: 1.2;
+    margin: 6px 0;
+  }
+
+  .sidebar ul li a,
+  .sidebar ul li form button {
+    align-items: center;
+    border-radius: 10px;
+    display: flex;
+    min-height: 44px;
+    width: 100%;
+  }
+
+  .sidebar .links_name,
+  .sidebar.active .links_name {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .sidebar ul li .tooltip {
+    display: none;
+  }
+
+  .home_content,
+  .sidebar.active ~ .home_content {
+    margin-left: 0;
+    padding: 12px;
+    width: 100%;
+  }
+
+  .home_content > .container {
+    width: 100%;
+  }
+
+  .admin-card {
+    border-radius: 8px;
+    margin-bottom: 16px;
+    padding: 14px;
+  }
+
+  .admin-form input,
+  .admin-form select {
+    min-height: 42px;
+  }
+
+  .admin-btn {
+    min-height: 42px;
+    width: 100%;
+  }
+
+  .admin-card .table {
+    font-size: 14px;
+    min-width: 560px;
+  }
+
+  .admin-card .d-flex.gap-2 {
+    gap: 8px !important;
+  }
 }

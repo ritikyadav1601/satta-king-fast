@@ -23,26 +23,28 @@ export default async function GamesPage() {
           </form>
         </div>
         <div className="admin-card">
-          <table className="table table-bordered">
-            <thead><tr><th>Name</th><th>Code</th><th>ResultTime</th><th>Index</th><th>Action</th></tr></thead>
-            <tbody>
-              {games.map((game) => (
-                <tr key={game._id}>
-                  <td>{game.name}</td>
-                  <td>{game.code}</td>
-                  <td>{game.resultTime}</td>
-                  <td>{game.showIndex}</td>
-                  <td className="d-flex gap-2">
-                    <button className="admin-btn" type="button" data-game={JSON.stringify(game)}>Edit</button>
-                    <form action={deleteGame}>
-                      <input type="hidden" name="id" value={game._id} />
-                      <button className="admin-btn danger">Delete</button>
-                    </form>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className="admin-table-wrap">
+            <table className="table table-bordered">
+              <thead><tr><th>Name</th><th>Code</th><th>ResultTime</th><th>Index</th><th>Action</th></tr></thead>
+              <tbody>
+                {games.map((game) => (
+                  <tr key={game._id}>
+                    <td>{game.name}</td>
+                    <td>{game.code}</td>
+                    <td>{game.resultTime}</td>
+                    <td>{game.showIndex}</td>
+                    <td className="d-flex gap-2">
+                      <button className="admin-btn" type="button" data-game={JSON.stringify(game)}>Edit</button>
+                      <form action={deleteGame}>
+                        <input type="hidden" name="id" value={game._id} />
+                        <button className="admin-btn danger">Delete</button>
+                      </form>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
       <script dangerouslySetInnerHTML={{ __html: `document.addEventListener('click',function(e){const btn=e.target.closest('[data-game]');if(!btn)return;const g=JSON.parse(btn.dataset.game);gameId.value=g._id;name.value=g.name||'';code.value=g.code||'';resultTime.value=(g.resultTime||'').slice(0,5);showIndex.value=g.showIndex||0;submitBtn.textContent='Update';window.scrollTo({top:0,behavior:'smooth'});})` }} />
