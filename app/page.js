@@ -14,20 +14,20 @@ function resultClass(value) {
 }
 
 const featuredGameList = [
+  { key: "desawer", name: "DESAWER" },
+  { key: "desawar", name: "DESAWER" },
+  { key: "delhi bazar", name: "Delhi BAZAR" },
+  { key: "shri ganesh", name: "Shri Ganesh" },
+  { key: "faridabad", name: "FARIDABAD" },
+  { key: "ghaziabad", name: "GHAZIABAD" },
+  { key: "gali", name: "GALI" },
   { key: "shiv dham", name: "Shiv Dham" },
   { key: "pushkar bazar", name: "Pushkar Bazar" },
   { key: "delhi metro", name: "Delhi Metro" },
-  { key: "delhi bazar", name: "Delhi BAZAR" },
   { key: "shri sayam", name: "Shri Sayam" },
-  { key: "shri ganesh", name: "Shri Ganesh" },
   { key: "kolmbia", name: "Kolmbia" },
-  { key: "faridabad", name: "FARIDABAD" },
   { key: "makka-madina", name: "Makka-Madina" },
-  { key: "ghaziabad", name: "GHAZIABAD" },
-  { key: "kalka night", name: "Kalka Night" },
-  { key: "gali", name: "GALI" },
-  { key: "desawer", name: "DESAWER" },
-  { key: "desawar", name: "DESAWER" }
+  { key: "kalka night", name: "Kalka Night" }
 ];
 
 const featuredGameKeys = new Set(featuredGameList.map((game) => game.key));
@@ -76,16 +76,9 @@ function LiveResultSection({ games, showClock = false }) {
 }
 
 function yearlyChartOrder(name = "") {
-  const main = new Map([
-    ["desawer", 0],
-    ["desawar", 0],
-    ["delhi bazar", 1],
-    ["shri ganesh", 2],
-    ["faridabad", 3],
-    ["ghaziabad", 4],
-    ["gali", 5]
-  ]);
-  return main.get(String(name).toLowerCase().trim());
+  const normalized = String(name).toLowerCase().trim();
+  const index = featuredGameList.findIndex((game) => game.key === normalized);
+  return index === -1 ? undefined : index;
 }
 
 export default async function HomePage() {
@@ -118,7 +111,7 @@ export default async function HomePage() {
     if (aOrder !== undefined && bOrder !== undefined) return aOrder - bOrder;
     if (aOrder !== undefined) return -1;
     if (bOrder !== undefined) return 1;
-    return 0;
+    return String(a.resultTime).localeCompare(String(b.resultTime)) || normalizeGameName(a.name).localeCompare(normalizeGameName(b.name));
   });
   const today = istDate();
   const title = `Satta King Record Chart ${monthName(today)}`;
