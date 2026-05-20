@@ -4,6 +4,7 @@ import Clock from "@/components/Clock";
 import GameCards from "@/components/GameCards";
 import MonthlyChartTable from "@/components/MonthlyChartTable";
 import PublicLayout from "@/components/PublicLayout";
+import YearlyChartSeoContent from "@/components/YearlyChartSeoContent";
 import { getAds, getGamesWithTodayResults, getMonthlyRows, getTopGames } from "@/lib/data";
 import { istDate, monthName, slugify } from "@/lib/utils";
 
@@ -143,6 +144,7 @@ export default async function HomePage() {
           ))}
         </div>
       </div>
+      <YearlyChartSeoContent />
     </PublicLayout>
   );
 }
