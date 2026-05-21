@@ -14,7 +14,7 @@ export async function GET(request) {
 
   const report = await syncA7Results({
     smart: true,
-    windowMinutes: 20
+    windowMinutes: 120
   });
 
   return NextResponse.json({ ok: true, report });

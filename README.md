@@ -66,13 +66,13 @@ Sync a specific date:
 npm run sync:a7 -- --date 2026-05-21
 ```
 
-Run the smart 20-minute result-window sync. This is the command to schedule every minute:
+Run the smart 2-hour result-window sync. This is the command to schedule every 5 minutes:
 
 ```bash
 npm run sync:a7:smart
 ```
 
-On Vercel, the same smart sync runs from `/api/cron/sync-a7` every minute through `vercel.json`.
+On Vercel, the same smart sync runs from `/api/cron/sync-a7` every 5 minutes through `vercel.json`.
 Set `CRON_SECRET` in Vercel project environment variables to protect the cron endpoint.
 
 Use a different active window if needed:
