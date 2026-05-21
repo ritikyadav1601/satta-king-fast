@@ -1,8 +1,21 @@
 import "./globals.css";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sattakingfast.com";
+
 export const metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Satta King Fast - Live Results & Daily Number Charts",
   description: "Check live results, daily updates, fast number charts, and market records with quick access, simple layout, and regular updates for users.SattaKingFast.Com",
+  alternates: {
+    canonical: "/"
+  },
+  openGraph: {
+    title: "Satta King Fast - Live Results & Daily Number Charts",
+    description: "Check live results, daily updates, fast number charts, and market records with quick access, simple layout, and regular updates.",
+    url: siteUrl,
+    siteName: "Satta King Fast",
+    type: "website"
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },

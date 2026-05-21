@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "import:sql": "node scripts/import-sql-to-mongo.js"
+    "import:sql": "node scripts/import-sql-to-mongo.js",
+    "sync:a7": "node scripts/sync-a7-results.js",
+    "sync:a7:smart": "node scripts/sync-a7-results.js --smart --window-minutes 20"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

@@ -46,6 +46,41 @@ Open `http://localhost:3000`.
 - If imported SQL includes users, use the imported admin email/password.
 - If no user exists, the login page lets you create the first admin.
 
+## A7 Result Sync
+
+Sync the matched A7Satta games into today's MongoDB results:
+
+```bash
+npm run sync:a7
+```
+
+Preview changes without writing:
+
+```bash
+npm run sync:a7 -- --dry-run
+```
+
+Sync a specific date:
+
+```bash
+npm run sync:a7 -- --date 2026-05-21
+```
+
+Run the smart 20-minute result-window sync. This is the command to schedule every minute:
+
+```bash
+npm run sync:a7:smart
+```
+
+On Vercel, the same smart sync runs from `/api/cron/sync-a7` every minute through `vercel.json`.
+Set `CRON_SECRET` in Vercel project environment variables to protect the cron endpoint.
+
+Use a different active window if needed:
+
+```bash
+npm run sync:a7 -- --smart --window-minutes 10
+```
+
 ## Deploy
 
 Deploy the folder to Vercel and set:
