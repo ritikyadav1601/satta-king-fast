@@ -26,7 +26,13 @@ export default async function AdminShell({ children }) {
         </ul>
       </div>
       <div className="home_content">{children}</div>
-      <script dangerouslySetInnerHTML={{ __html: `document.addEventListener('click',function(e){const sidebar=document.querySelector('.sidebar');if(!sidebar)return;if(e.target&&e.target.id==='btn'){if(window.innerWidth<=768)sidebar.classList.toggle('mobile-open');else sidebar.classList.toggle('active')}else if(window.innerWidth<=768&&e.target.closest('.sidebar a')){sidebar.classList.remove('mobile-open')}});function syncAdminSidebar(){const sidebar=document.querySelector('.sidebar');if(!sidebar)return;if(window.innerWidth<=768){sidebar.classList.remove('active')}else{sidebar.classList.remove('mobile-open');sidebar.classList.add('active')}}syncAdminSidebar();window.addEventListener('resize',syncAdminSidebar);` }} />
+      <div className="admin-loader" id="adminLoader" aria-live="polite" aria-hidden="true">
+        <div className="admin-loader-box">
+          <span className="admin-spinner"></span>
+          <span>Please wait...</span>
+        </div>
+      </div>
+      <script dangerouslySetInnerHTML={{ __html: `function showAdminLoader(){const loader=document.getElementById('adminLoader');if(!loader)return;loader.classList.add('show');loader.setAttribute('aria-hidden','false')}document.addEventListener('submit',function(e){const form=e.target;if(!form||form.dataset.noLoader==='true')return;showAdminLoader();const btn=form.querySelector('button[type="submit"],button:not([type])');if(btn){btn.disabled=true;btn.classList.add('is-loading')}});document.addEventListener('click',function(e){const sidebar=document.querySelector('.sidebar');if(sidebar){if(e.target&&e.target.id==='btn'){if(window.innerWidth<=768)sidebar.classList.toggle('mobile-open');else sidebar.classList.toggle('active')}else if(window.innerWidth<=768&&e.target.closest('.sidebar a')){sidebar.classList.remove('mobile-open')}}const action=e.target.closest('a,button');if(!action||action.type==='button'||action.dataset.noLoader==='true')return;if(action.closest('form'))return;if(action.tagName==='A'&&action.getAttribute('href')&&action.getAttribute('href')!=='#')showAdminLoader();});function syncAdminSidebar(){const sidebar=document.querySelector('.sidebar');if(!sidebar)return;if(window.innerWidth<=768){sidebar.classList.remove('active')}else{sidebar.classList.remove('mobile-open');sidebar.classList.add('active')}}syncAdminSidebar();window.addEventListener('resize',syncAdminSidebar);` }} />
     </div>
   );
 }
