@@ -7,7 +7,7 @@ export const metadata = {
   title: "Satta King Fast - Live Results & Daily Number Charts",
   description: "Check live results, daily updates, fast number charts, and market records with quick access, simple layout, and regular updates for users.SattaKingFast.Com",
   verification: {
-    google: "RyOErpCLdPJqTB3jfG_mF8k_bQD-oRD4CzhvGUknWBY",
+    google: "atrP2Nan2ywH60TPdfGhm7mUuD2X5ZJEVAm_FFBlKWQ",
   },
   alternates: {
     canonical: "/"
@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <title>Satta King Fast - Live Results & Daily Number Charts</title>
-        <meta name="google-site-verification" content="RyOErpCLdPJqTB3jfG_mF8k_bQD-oRD4CzhvGUknWBY" />
+        <meta name="google-site-verification" content="atrP2Nan2ywH60TPdfGhm7mUuD2X5ZJEVAm_FFBlKWQ" />
         <link rel="stylesheet" href="/asset/app.css" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/icon.png" type="image/png" />
