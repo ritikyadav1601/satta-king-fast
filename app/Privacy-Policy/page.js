@@ -2,6 +2,12 @@ import PublicLayout from "@/components/PublicLayout";
 
 export const revalidate = 300;
 
+export const metadata = {
+  title: "Privacy Policy | Satta King Fast",
+  description: "Privacy policy for Satta King Fast. We use contact information only to operate the website.",
+  alternates: { canonical: "/Privacy-Policy" },
+};
+
 export default function PrivacyPolicyPage() {
   return (
     <PublicLayout>

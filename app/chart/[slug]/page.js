@@ -5,6 +5,16 @@ import { monthName } from "@/lib/utils";
 
 export const revalidate = 300;
 
+export async function generateMetadata({ params }) {
+  const resolvedParams = await params;
+  const raw = decodeURIComponent(resolvedParams.slug || "").replace(/^result-chart-/, "");
+  return {
+    title: `Satta King Record Chart ${raw.replace(/-/g, " ")} | Satta King Fast`,
+    description: `Check Satta King result chart for ${raw.replace(/-/g, " ")}. Daily updated market-wise records.`,
+    alternates: { canonical: `/chart/${resolvedParams.slug}` },
+  };
+}
+
 export default async function MonthChartPage({ params }) {
   const resolvedParams = await params;
   const raw = decodeURIComponent(resolvedParams.slug || "").replace(/^result-chart-/, "");

@@ -2,6 +2,12 @@ import PublicLayout from "@/components/PublicLayout";
 
 export const revalidate = 300;
 
+export const metadata = {
+  title: "Disclaimer | Satta King Fast",
+  description: "Read the Satta King Fast disclaimer. Information is for record purposes only.",
+  alternates: { canonical: "/disclaimer" },
+};
+
 export default function DisclaimerPage() {
   return (
     <PublicLayout>

@@ -409,3 +409,46 @@ select {
     max-width: calc(100% - 40px);
   }
 }
+
+
+/* ── CSS Ticker (replaces <marquee>) ───────────────────────────────────────── */
+/* Add this block at the bottom of app/globals.css                             */
+
+.ticker-wrap {
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  overflow: hidden;
+  width: 100%;
+}
+
+.ticker-track {
+  display: inline-block;
+  white-space: nowrap;
+  animation: ticker-scroll 40s linear infinite;
+}
+
+/* Pause on hover so users can read */
+.ticker-wrap:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+.ticker-text {
+  display: inline-block;
+  padding: 10px 0;
+  color: #111827;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .ticker-text {
+    font-size: 0.875rem;
+  }
+}
+
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+/* ── End Ticker ─────────────────────────────────────────────────────────────── */

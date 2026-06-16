@@ -9,6 +9,19 @@ function ResultText({ value }) {
   return <span className={pending ? "result-pending" : undefined}>{result}</span>;
 }
 
+export async function generateMetadata({ params }) {
+  const resolvedParams = await params;
+  const match = decodeURIComponent(resolvedParams.slugYear).match(/^(.+)-result-chart-(\d{4})$/);
+  const slug = match?.[1] || "desawer";
+  const year = match?.[2] || new Date().getFullYear();
+  const name = slug.replace(/-/g, " ").toUpperCase();
+  return {
+    title: `${name} Yearly Chart ${year} | Satta King Fast`,
+    description: `${name} yearly result chart ${year}. Check all monthly and daily records for ${name} in one place.`,
+    alternates: { canonical: `/year-chart/${resolvedParams.slugYear}` },
+  };
+}
+
 export default async function YearChartPage({ params }) {
   const resolvedParams = await params;
   const match = decodeURIComponent(resolvedParams.slugYear).match(/^(.+)-result-chart-(\d{4})$/);

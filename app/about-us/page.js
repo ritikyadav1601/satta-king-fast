@@ -2,6 +2,12 @@ import PublicLayout from "@/components/PublicLayout";
 
 export const revalidate = 300;
 
+export const metadata = {
+  title: "About Us | Satta King Fast",
+  description: "Learn about Satta King Fast — fast result updates, old charts, and market-wise records.",
+  alternates: { canonical: "/about-us" },
+};
+
 export default function AboutPage() {
   return (
     <PublicLayout>
