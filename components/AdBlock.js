@@ -17,7 +17,7 @@ export default function AdBlock({ ad }) {
       </section>
       <section>
         <div className="responsive-copy rounded-md mx-1 my-2 p-4 text-center text-white" style={{ background: "linear-gradient(rgb(0, 0, 0) 0%, rgb(10, 58, 63) 100%)" }}>
-          <h1 className="yellow_heading text-lg md:text-2xl font-normal mb-1">🔥FEES GAME PASS KE BAD</h1>
+          <p className="yellow_heading text-lg md:text-2xl font-normal mb-1">🔥FEES GAME PASS KE BAD</p>
           <p className="mb-1 text-white text-sm font-semibold">🎯FARIDABAD GAZIYABAD GALI DS🎯</p>
           <p className="mb-1 text-white text-sm font-semibold">💯LEAK SINGLE JODI GAME💯 <br />MUMBAI HEAD BRANCH</p>
           <p className="yellow_heading text-lg md:text-xl font-semibold">👑DISAWER LEAK👑</p>

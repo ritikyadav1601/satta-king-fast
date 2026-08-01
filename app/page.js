@@ -8,7 +8,7 @@ import YearlyChartSeoContent from "@/components/YearlyChartSeoContent";
 import { getAds, getGamesWithTodayResults, getMonthlyRows, getTopGames } from "@/lib/data";
 import { istDate, monthName, slugify } from "@/lib/utils";
 
-export const revalidate = 30;
+export const revalidate = 300;
 
 export const metadata = {
   alternates: { canonical: "/" },
@@ -61,21 +61,25 @@ function pickBestGame(candidates, displayName) {
   })[0];
 }
 
-function LiveResultSection({ games, showClock = false }) {
-  if (!games.length) return null;
-
+function LiveResultSection({ games, showClock = false, primary = false }) {
   return (
     <div className="live-result-section bg-white">
       {showClock ? <Clock /> : null}
-      <h1 className="live-result-title">Satta King Live Result Today</h1>
-      <div className="live-result-list">
-        {games.map((item) => (
-          <div className="live-result-item text-center" key={item._id}>
-            <h2 className="live-result-game">{item.name}</h2>
-            <p className={`live-result-value${resultClass(item.second)}`}>{item.second}</p>
-          </div>
-        ))}
-      </div>
+      {primary ? (
+        <h1 className="live-result-title">Satta King Fast Live Result Today</h1>
+      ) : (
+        <h2 className="live-result-title">More Live Satta Results Today</h2>
+      )}
+      {games.length ? (
+        <div className="live-result-list">
+          {games.map((item) => (
+            <div className="live-result-item text-center" key={item._id}>
+              <p className="live-result-game">{item.name}</p>
+              <p className={`live-result-value${resultClass(item.second)}`}>{item.second}</p>
+            </div>
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -125,7 +129,7 @@ export default async function HomePage() {
   return (
     <PublicLayout>
       <div className="home-blue-band home-blue-band-top"></div>
-      <LiveResultSection games={featuredTopGames} showClock />
+      <LiveResultSection games={featuredTopGames} showClock primary />
       <div className="home-blue-band home-blue-band-bottom"></div>
       <AdBlock ad={ads[0]} />
       <GameCards games={featuredGames} />

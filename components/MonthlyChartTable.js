@@ -79,19 +79,15 @@ function canLinkToNextMonth(dateKey) {
 }
 
 export default function MonthlyChartTable({ title, rows, columns, dateKey, chunkSize = 10 }) {
-  const desktopChunks = chunkColumns(columns, chunkSize);
-  const mobileChunks = chunkColumns(columns, 6);
+  const chunks = chunkColumns(columns, Math.min(chunkSize, 6));
   const chartDateKey = dateKey || new Date().toISOString().slice(0, 10);
 
   return (
     <div className="mx-auto mt-5">
       <div className="satta-table-container">
         <h2 className="text-center font-bold text-lg md:text-xl py-3 bg-yellow-400 uppercase">{title}</h2>
-        <div className="table-wrapper monthly-chart-desktop mb-8">
-          <ChartTables rows={rows} chunks={desktopChunks} />
-        </div>
-        <div className="table-wrapper monthly-chart-mobile mb-8">
-          <ChartTables rows={rows} chunks={mobileChunks} />
+        <div className="table-wrapper mb-8">
+          <ChartTables rows={rows} chunks={chunks} />
         </div>
         <div className="monthly-chart-nav">
           <Link className="monthly-chart-nav-btn" href={monthLink(chartDateKey, -1)}>
