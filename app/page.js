@@ -10,6 +10,10 @@ import { istDate, monthName, slugify } from "@/lib/utils";
 
 export const revalidate = 30;
 
+export const metadata = {
+  alternates: { canonical: "/" },
+};
+
 function resultClass(value) {
   return String(value).toUpperCase() === "XX" ? " result-pending" : "";
 }

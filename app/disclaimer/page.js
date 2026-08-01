@@ -3,7 +3,7 @@ import PublicLayout from "@/components/PublicLayout";
 export const revalidate = 300;
 
 export const metadata = {
-  title: "Disclaimer | Satta King Fast",
+  title: "Disclaimer",
   description: "Read the Satta King Fast disclaimer. Information is for record purposes only.",
   alternates: { canonical: "/disclaimer" },
 };

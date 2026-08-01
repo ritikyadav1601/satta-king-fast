@@ -1,13 +1,16 @@
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sattakingfast.com";
+import { SITE_URL } from "@/lib/seo";
+
+export const revalidate = 3600;
 
 export default function robots() {
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-      disallow: ["/admin/"]
-    },
-    sitemap: `${siteUrl}/sitemap.xml`,
-    host: siteUrl
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/admin/", "/api/"],
+      },
+    ],
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

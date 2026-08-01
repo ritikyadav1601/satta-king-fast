@@ -1,7 +1,16 @@
 import PublicLayout from "@/components/PublicLayout";
 import { getYearChartRows } from "@/lib/data";
+import { notFound } from "next/navigation";
 
 export const revalidate = 300;
+
+function parseYearChartSlug(value = "") {
+  const match = decodeURIComponent(value).match(/^([a-z0-9]+(?:-[a-z0-9]+)*)-result-chart-(\d{4})$/);
+  if (!match) return null;
+  const year = Number(match[2]);
+  if (year < 2005 || year > new Date().getFullYear()) return null;
+  return { slug: match[1], year };
+}
 
 function ResultText({ value }) {
   const result = value || "-";
@@ -11,12 +20,12 @@ function ResultText({ value }) {
 
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
-  const match = decodeURIComponent(resolvedParams.slugYear).match(/^(.+)-result-chart-(\d{4})$/);
-  const slug = match?.[1] || "desawer";
-  const year = match?.[2] || new Date().getFullYear();
+  const parsed = parseYearChartSlug(resolvedParams.slugYear);
+  if (!parsed) return { title: "Chart Not Found", robots: { index: false, follow: false } };
+  const { slug, year } = parsed;
   const name = slug.replace(/-/g, " ").toUpperCase();
   return {
-    title: `${name} Yearly Chart ${year} | Satta King Fast`,
+    title: `${name} Yearly Chart ${year}`,
     description: `${name} yearly result chart ${year}. Check all monthly and daily records for ${name} in one place.`,
     alternates: { canonical: `/year-chart/${resolvedParams.slugYear}` },
   };
@@ -24,10 +33,11 @@ export async function generateMetadata({ params }) {
 
 export default async function YearChartPage({ params }) {
   const resolvedParams = await params;
-  const match = decodeURIComponent(resolvedParams.slugYear).match(/^(.+)-result-chart-(\d{4})$/);
-  const slug = match?.[1] || "desawer";
-  const year = Number(match?.[2] || new Date().getFullYear());
+  const parsed = parseYearChartSlug(resolvedParams.slugYear);
+  if (!parsed) notFound();
+  const { slug, year } = parsed;
   const { rows, game } = await getYearChartRows(slug, year);
+  if (!game?._id) notFound();
   const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
 
   return (
@@ -63,7 +73,6 @@ export default async function YearChartPage({ params }) {
               ))}
             </tbody>
           </table>
-          {!game?._id && <p className="text-center text-red-600 font-bold py-4">Game not found.</p>}
         </div>
       </div>
       <script dangerouslySetInnerHTML={{ __html: `document.addEventListener('change',function(e){if(e.target.name==='year'){location.href='/year-chart/${slug}-result-chart-'+e.target.value;}})` }} />

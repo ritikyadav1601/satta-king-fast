@@ -3,7 +3,7 @@ import PublicLayout from "@/components/PublicLayout";
 export const revalidate = 300;
 
 export const metadata = {
-  title: "About Us | Satta King Fast",
+  title: "About Us",
   description: "Learn about Satta King Fast — fast result updates, old charts, and market-wise records.",
   alternates: { canonical: "/about-us" },
 };

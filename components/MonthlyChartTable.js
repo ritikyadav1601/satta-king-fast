@@ -71,6 +71,13 @@ function monthLabel(dateKey, offset) {
   return monthName(date.toISOString().slice(0, 10));
 }
 
+function canLinkToNextMonth(dateKey) {
+  const chartDate = new Date(`${dateKey.slice(0, 7)}-01T00:00:00.000Z`);
+  const now = new Date();
+  const currentMonth = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1));
+  return chartDate < currentMonth;
+}
+
 export default function MonthlyChartTable({ title, rows, columns, dateKey, chunkSize = 10 }) {
   const desktopChunks = chunkColumns(columns, chunkSize);
   const mobileChunks = chunkColumns(columns, 6);
@@ -90,9 +97,11 @@ export default function MonthlyChartTable({ title, rows, columns, dateKey, chunk
           <Link className="monthly-chart-nav-btn" href={monthLink(chartDateKey, -1)}>
             {monthLabel(chartDateKey, -1)}
           </Link>
-          <Link className="monthly-chart-nav-btn" href={monthLink(chartDateKey, 1)}>
-            {monthLabel(chartDateKey, 1)}
-          </Link>
+          {canLinkToNextMonth(chartDateKey) ? (
+            <Link className="monthly-chart-nav-btn" href={monthLink(chartDateKey, 1)}>
+              {monthLabel(chartDateKey, 1)}
+            </Link>
+          ) : null}
         </div>
       </div>
     </div>

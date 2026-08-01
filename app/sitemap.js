@@ -1,23 +1,10 @@
 // app/sitemap.js
 import { connectDB } from "@/lib/db";
 import Game from "@/models/Game";
+import { SITE_URL } from "@/lib/seo";
+import { shortMonthYear, slugify } from "@/lib/utils";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sattakingfast.com";
-
-function shortMonthYear(dateKey) {
-  const date = new Date(`${dateKey}T00:00:00.000Z`);
-  return date
-    .toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" })
-    .replace(" ", "-");
-}
-
-function slugify(value = "") {
-  return String(value)
-    .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
+export const revalidate = 3600;
 
 function recentChartUrls(now) {
   const urls = [];
@@ -25,7 +12,7 @@ function recentChartUrls(now) {
     const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - i, 1));
     const dateKey = d.toISOString().slice(0, 10);
     urls.push({
-      url: `${siteUrl}/chart/result-chart-${shortMonthYear(dateKey)}`,
+      url: `${SITE_URL}/chart/result-chart-${shortMonthYear(dateKey)}`,
       lastModified: i === 0 ? now : d,
       changeFrequency: i === 0 ? "daily" : "monthly",
       priority: i === 0 ? 0.8 : 0.5,
@@ -48,16 +35,16 @@ export default async function sitemap() {
   let games = [];
   try {
     await connectDB();
-    games = await Game.find({ isActive: true }).select({ name: 1 }).lean();
+    games = await Game.find({ isActive: true }).select({ name: 1, updatedAt: 1 }).lean();
   } catch {
     // DB unavailable during build — year-chart URLs omitted this run
   }
 
   const yearChartUrls = games.flatMap((game) => {
     const slug = slugify(game.name);
-    return [currentYear, currentYear - 1].map((year) => ({
-      url: `${siteUrl}/year-chart/${slug}-result-chart-${year}`,
-      lastModified: now,
+    return [currentYear, currentYear - 1, currentYear - 2].map((year) => ({
+      url: `${SITE_URL}/year-chart/${slug}-result-chart-${year}`,
+      lastModified: game.updatedAt || now,
       changeFrequency: "daily",
       priority: 0.7,
     }));
@@ -65,13 +52,13 @@ export default async function sitemap() {
 
   const blogUrls = [
     {
-      url: `${siteUrl}/blog`,
+      url: `${SITE_URL}/blog`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.6,
     },
     ...blogSlugs.map((slug) => ({
-      url: `${siteUrl}/blog/${slug}`,
+      url: `${SITE_URL}/blog/${slug}`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.5,
@@ -79,11 +66,11 @@ export default async function sitemap() {
   ];
 
   return [
-    { url: siteUrl, lastModified: now, changeFrequency: "always", priority: 1.0 },
-    { url: `${siteUrl}/charts`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
-    { url: `${siteUrl}/about-us`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
-    { url: `${siteUrl}/disclaimer`, lastModified: now, changeFrequency: "monthly", priority: 0.3 },
-    { url: `${siteUrl}/Privacy-Policy`, lastModified: now, changeFrequency: "monthly", priority: 0.3 },
+    { url: `${SITE_URL}/`, lastModified: now, changeFrequency: "daily", priority: 1.0 },
+    { url: `${SITE_URL}/charts`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
+    { url: `${SITE_URL}/about-us`, changeFrequency: "yearly", priority: 0.4 },
+    { url: `${SITE_URL}/disclaimer`, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${SITE_URL}/Privacy-Policy`, changeFrequency: "yearly", priority: 0.3 },
     ...blogUrls,
     ...recentChartUrls(now),
     ...yearChartUrls,

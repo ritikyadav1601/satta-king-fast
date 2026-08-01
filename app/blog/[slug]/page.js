@@ -83,7 +83,7 @@ export async function generateMetadata({ params }) {
   const post = posts[slug];
   if (!post) return {};
   return {
-    title: `${post.title} | Satta King Fast Blog`,
+    title: post.title,
     description: post.body.slice(0, 155).replace(/\*\*/g, "").replace(/\n/g, " ") + "…",
     alternates: { canonical: `/blog/${slug}` },
   };

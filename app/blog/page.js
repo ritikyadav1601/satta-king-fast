@@ -5,7 +5,7 @@ import PublicLayout from "@/components/PublicLayout";
 export const revalidate = 300;
 
 export const metadata = {
-  title: "Satta King Blog – Tips, Charts & Result Updates | Satta King Fast",
+  title: "Satta King Blog – Tips, Charts & Result Updates",
   description:
     "Read the latest Satta King blog posts covering result updates, chart analysis, market tips, and historical data for Gali, Desawer, Faridabad, Ghaziabad and more.",
   alternates: { canonical: "/blog" },
