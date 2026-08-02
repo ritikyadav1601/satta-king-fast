@@ -19,5 +19,7 @@ export function middleware(request) {
 }
 
 export const config = {
-  matcher: "/((?!_next/|favicon.ico|icon.png|apple-icon.png).*)"
+  // Cron monitors must receive the endpoint response directly. Some providers
+  // do not follow redirects and report the canonical-host 301 as a failure.
+  matcher: "/((?!api/cron/|_next/|favicon.ico|icon.png|apple-icon.png).*)"
 };
