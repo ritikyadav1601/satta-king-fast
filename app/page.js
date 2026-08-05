@@ -131,7 +131,7 @@ export default async function HomePage() {
       <div className="home-blue-band home-blue-band-top"></div>
       <LiveResultSection games={featuredTopGames} showClock primary />
       <div className="home-blue-band home-blue-band-bottom"></div>
-      <AdBlock ad={ads[0]} />
+      <AdBlock ad={ads.find((ad) => ad.website === "satta-king-fast") || ads[0]} />
       <GameCards games={featuredGames} />
       <LiveResultSection games={remainingTopGames} />
       <GameCards games={remainingGames} />

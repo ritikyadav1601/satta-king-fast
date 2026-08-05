@@ -40,6 +40,29 @@ export async function saveAd(formData) {
   redirect("/admin/ad?saved=1");
 }
 
+export async function saveWebsiteAd(formData) {
+  await requireAdmin();
+  await connectDB();
+  const website = String(formData.get("website") || "");
+  if (!["satta-king-24-1", "satta-king-24-2", "satta-king-fast"].includes(website)) {
+    redirect("/admin/ad?error=invalid-website");
+  }
+  const name = String(formData.get("name") || "").trim();
+  const contactNumber = String(formData.get("contactNumber") || "").trim();
+  await Ad.findOneAndUpdate(
+    { website },
+    {
+      website,
+      khaiwalName: name,
+      whatsappNumber: contactNumber,
+      gpayNumber: contactNumber
+    },
+    { upsert: true, new: true, setDefaultsOnInsert: true }
+  );
+  revalidatePath("/");
+  redirect("/admin/ad?saved=1");
+}
+
 export async function saveGame(formData) {
   await requireAdmin();
   await connectDB();
